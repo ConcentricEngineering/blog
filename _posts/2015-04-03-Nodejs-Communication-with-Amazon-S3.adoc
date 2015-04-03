@@ -11,6 +11,11 @@ it to tar and gzip the archive and at the same time sends
 a url to the user where he can download the zipped archive,
 along with a message to wait a short time (??).
 
+== Resources
+
+http://www.hacksparrow.com/node-js-amazon-s3-how-to-get-started.html[Getting
+started: node & s3]
+
 == A start on this project
 
 Below is bare-bones server written in Express that
