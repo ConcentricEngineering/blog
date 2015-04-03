@@ -7,10 +7,6 @@
   var express = require('express');
   var app = express();
 
-  app.get('/', function(req, res) {
-    res.end('Yes, what is it?\n')
-  });
-
   app.get ('/hello', function(req, res) {
     res.end('I am alive. Thank you for your concern.\n')
   });
