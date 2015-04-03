@@ -1,3 +1,6 @@
 = Node.js Communication with Amazon S3
 
-This is a test.
+[source, javascript]
+--
+test
+--
