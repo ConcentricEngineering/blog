@@ -1,5 +1,7 @@
 = Node.js Communication with Amazon S3
 
+
+.Server code
 [source, javascript]
 --
   var express = require('express');
@@ -23,3 +25,22 @@
   });
 
 --
+
+
+.Code for listBucket()
+[source, javascript]
+--
+function listBucket() {
+  var s3 = require('aws2js').load('s3', "HOHO56721", "HAHA884433");
+  s3.setBucket("vschool");
+
+  var folder = encodeURI('manuscripts/195');
+  var url = '?prefix=' + folder;
+
+  s3.get(url, 'xml', function (error, data) {
+    console.log(error);
+    console.log("Here comes the listing:")
+    console.log(data);
+    // console.log("Data count: " + data['Content'].length)
+  });
+}
