@@ -14,7 +14,10 @@ along with a message to wait a short time (??).
 == Resources
 
 http://www.hacksparrow.com/node-js-amazon-s3-how-to-get-started.html[Getting
-started: node & s3]
+started: node & s3] +
+http://s3tools.org/usage[S2 Tools - commmands]
+
+
 
 == A start on this project
 
