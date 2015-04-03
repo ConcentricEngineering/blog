@@ -1,9 +1,39 @@
 = Node.js Communication with Amazon S3
 
+I'm thinking of simplifying the archive process for notebooks
+on Notehsare along the following lines:
+
+. Noteshare prepares the archive on S3, but in a non-public
+location.
+
+. Noteshare sends a message to a Node.js server in EC2 asking
+it to tar and gzip the archive and at the same time sends
+a url to the user where he can download the zipped archive,
+along with a message to wait a short time (??).
+
+== A start on this project
+
+Below is bare-bones server written in Express that
+responds to three simple requests.  Assuming that 
+it set up for `localhost:8081`, we proceed as follows:
+
+. Launch the server with `$ node server.js`
+. Run `$ curl http://localhost:8081/hello`.  The response is
+`I am alive.  Thank you for your concern.`.
+. Run `$ curl http://localhost:8081/file/foobar.txt`  The response
+is `You asked for file foobar.txt`
+. Run `$ curl http://localhost:8081/list`  The response
+is a listing of the files in object `manuscript/195` of
+bucket `vschool`.
+
+
+
 
 .Server code
 [source, javascript]
 --
+  // File: server.js
+  
   var express = require('express');
   var app = express();
 
