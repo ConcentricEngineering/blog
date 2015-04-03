@@ -67,7 +67,7 @@ app.listen(8081);
 [source, javascript]
 --
 function listBucket() {
-  var s3 = require('aws2js').load('s3', "HOHOHO123", "HAHAH456");
+  var s3 = require('aws2js').load('s3', "HAHA876", "HOHO1234");
   s3.setBucket("vschool");
 
   var folder = encodeURI('manuscripts/195');
@@ -79,14 +79,15 @@ function listBucket() {
     console.log(error);
 
     for (i = 0; i < n; i++) {
-      file = data['Contents'][i]['Key']
-      console.log((i+1) + ": " + file)
+      file_name = data['Contents'][i]['Key'];
+      console.log((i+1) + ": " + file_name);
     }
     console.log("----------------------");
     console.log(n + " items listed");
 
   });
 }
+
 --
 
 .Example for returned listing
