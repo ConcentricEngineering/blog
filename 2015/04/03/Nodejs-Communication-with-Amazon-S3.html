@@ -20,14 +20,14 @@
     <meta property="og:site_name" content="Concentric Engineering Blog" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Node.js Communication with Amazon S3" />
-    <meta property="og:description" content="Server code   var express = require(&#x27;express&#x27;);   var app = express();   app.get (&#x27;/hello&#x27;, function(req, res) {     res.end(&#x27;I am alive. Thank you for your concern.\n&#x27;)   });   app.get(&quot;/file/:file_name&quot;, function(req, res) {     res.end(&quot;You asked for..." />
+    <meta property="og:description" content="I&amp;#8217;m thinking of simplifying the archive process for notebooks on Notehsare along the following lines: Noteshare prepares the archive on S3, but in a non-public location. Noteshare sends a message to a Node.js server in EC2 asking..." />
     <meta property="og:url" content="https://ConcentricEngineering.github.io/blog/2015/04/03/Nodejs-Communication-with-Amazon-S3.html" />
     <meta property="article:published_time" content="2015-04-03T04:00:00.000Z" />
-    <meta property="article:modified_time" content="2015-04-03T15:12:15.686Z" />
+    <meta property="article:modified_time" content="2015-04-03T15:24:31.164Z" />
     
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Node.js Communication with Amazon S3" />
-    <meta name="twitter:description" content="Server code   var express = require(&#x27;express&#x27;);   var app = express();   app.get (&#x27;/hello&#x27;, function(req, res) {     res.end(&#x27;I am alive. Thank you for your concern.\n&#x27;)   });   app.get(&quot;/file/:file_name&quot;, function(req, res) {     res.end(&quot;You asked for..." />
+    <meta name="twitter:description" content="I&amp;#8217;m thinking of simplifying the archive process for notebooks on Notehsare along the following lines: Noteshare prepares the archive on S3, but in a non-public location. Noteshare sends a message to a Node.js server in EC2 asking..." />
     <meta name="twitter:url" content="https://ConcentricEngineering.github.io/blog/2015/04/03/Nodejs-Communication-with-Amazon-S3.html" />
     
     <script type="application/ld+json">
@@ -45,8 +45,8 @@
     "headline": "Node.js Communication with Amazon S3",
     "url": "https://ConcentricEngineering.github.io/blog/2015/04/03/Nodejs-Communication-with-Amazon-S3.html",
     "datePublished": "2015-04-03T04:00:00.000Z",
-    "dateModified": "2015-04-03T15:12:15.686Z",
-    "description": "Server code   var express = require(&#x27;express&#x27;);   var app = express();   app.get (&#x27;/hello&#x27;, function(req, res) {     res.end(&#x27;I am alive. Thank you for your concern.\\n&#x27;)   });   app.get(&quot;/file/:file_name&quot;, function(req, res) {     res.end(&quot;You asked for..."
+    "dateModified": "2015-04-03T15:24:31.164Z",
+    "description": "I&amp;#8217;m thinking of simplifying the archive process for notebooks on Notehsare along the following lines: Noteshare prepares the archive on S3, but in a non-public location. Noteshare sends a message to a Node.js server in EC2 asking..."
 }
     </script>
 
@@ -67,10 +67,62 @@
         </header>
 
         <div class="text" id="js-post-content">
-            <div class="listingblock">
+            <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>I&#8217;m thinking of simplifying the archive process for notebooks
+on Notehsare along the following lines:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Noteshare prepares the archive on S3, but in a non-public
+location.</p>
+</li>
+<li>
+<p>Noteshare sends a message to a Node.js server in EC2 asking
+it to tar and gzip the archive and at the same time sends
+a url to the user where he can download the zipped archive,
+along with a message to wait a short time (??).</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_a_start_on_this_project">A start on this project</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Below is bare-bones server written in Express that
+responds to three simple requests.  Assuming that
+it set up for <code>localhost:8081</code>, we proceed as follows:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Launch the server with <code>$ node server.js</code></p>
+</li>
+<li>
+<p>Run <code>$ curl <a href="http://localhost:8081/hello" class="bare">http://localhost:8081/hello</a></code>.  The response is
+<code>I am alive.  Thank you for your concern.</code>.</p>
+</li>
+<li>
+<p>Run <code>$ curl <a href="http://localhost:8081/file/foobar.txt" class="bare">http://localhost:8081/file/foobar.txt</a></code>  The response
+is <code>You asked for file foobar.txt</code></p>
+</li>
+<li>
+<p>Run <code>$ curl <a href="http://localhost:8081/list" class="bare">http://localhost:8081/list</a></code>  The response
+is a listing of the files in object <code>manuscript/195</code> of
+bucket <code>vschool</code>.</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
 <div class="title">Server code</div>
 <div class="content">
-<pre class="highlight"><code class="language-javascript" data-lang="javascript">  var express = require('express');
+<pre class="highlight"><code class="language-javascript" data-lang="javascript">  // File: server.js
+
+  var express = require('express');
   var app = express();
 
   app.get ('/hello', function(req, res) {
@@ -106,6 +158,8 @@ app.listen(8081);</code></pre>
     // console.log("Data count: " + data['Content'].length)
   });
 }</code></pre>
+</div>
+</div>
 </div>
 </div>
         </div>
