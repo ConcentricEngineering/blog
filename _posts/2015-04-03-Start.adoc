@@ -1,0 +1,5 @@
+= Start!
+
+I am starting this blog to bring
+better memory to the development
+process for Noteshare.io and other projects.
