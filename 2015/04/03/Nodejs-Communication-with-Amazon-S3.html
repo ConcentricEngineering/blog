@@ -23,7 +23,7 @@
     <meta property="og:description" content="I&amp;#8217;m thinking of simplifying the archive process for notebooks on Notehsare along the following lines: Noteshare prepares the archive on S3, but in a non-public location. Noteshare sends a message to a Node.js server in EC2 asking..." />
     <meta property="og:url" content="https://ConcentricEngineering.github.io/blog/2015/04/03/Nodejs-Communication-with-Amazon-S3.html" />
     <meta property="article:published_time" content="2015-04-03T04:00:00.000Z" />
-    <meta property="article:modified_time" content="2015-04-03T19:33:50.196Z" />
+    <meta property="article:modified_time" content="2015-04-03T21:14:56.536Z" />
     
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Node.js Communication with Amazon S3" />
@@ -45,7 +45,7 @@
     "headline": "Node.js Communication with Amazon S3",
     "url": "https://ConcentricEngineering.github.io/blog/2015/04/03/Nodejs-Communication-with-Amazon-S3.html",
     "datePublished": "2015-04-03T04:00:00.000Z",
-    "dateModified": "2015-04-03T19:33:50.196Z",
+    "dateModified": "2015-04-03T21:14:56.536Z",
     "description": "I&amp;#8217;m thinking of simplifying the archive process for notebooks on Notehsare along the following lines: Noteshare prepares the archive on S3, but in a non-public location. Noteshare sends a message to a Node.js server in EC2 asking..."
 }
     </script>
@@ -156,7 +156,7 @@ app.listen(8081);</code></pre>
 <div class="title">Code for listBucket()</div>
 <div class="content">
 <pre class="highlight"><code class="language-javascript" data-lang="javascript">function listBucket() {
-  var s3 = require('aws2js').load('s3', "HOHOHO123", "HAHAH456");
+  var s3 = require('aws2js').load('s3', "HAHA876", "HOHO1234");
   s3.setBucket("vschool");
 
   var folder = encodeURI('manuscripts/195');
@@ -168,8 +168,8 @@ app.listen(8081);</code></pre>
     console.log(error);
 
     for (i = 0; i &lt; n; i++) {
-      file = data['Contents'][i]['Key']
-      console.log((i+1) + ": " + file)
+      file_name = data['Contents'][i]['Key'];
+      console.log((i+1) + ": " + file_name);
     }
     console.log("----------------------");
     console.log(n + " items listed");
