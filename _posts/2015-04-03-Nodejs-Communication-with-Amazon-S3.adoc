@@ -2,5 +2,24 @@
 
 [source, javascript]
 --
-test
+  var express = require('express');
+  var app = express();
+
+  app.get('/', function(req, res) {
+    res.end('Yes, what is it?\n')
+  });
+
+  app.get ('/hello', function(req, res) {
+    res.end('I am alive. Thank you for your concern.\n')
+  });
+
+  app.get("/file/:file_name", function(req, res) {
+    res.end("You asked for the file " + req.params.file_name + "\n");
+  });
+
+  app.get("/list", function(req, res) {
+    listBucket();
+    res.end("See console.log for the file list\n");
+  });
+
 --
