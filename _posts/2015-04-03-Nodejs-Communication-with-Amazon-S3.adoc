@@ -88,3 +88,26 @@ function listBucket() {
   });
 }
 --
+
+.Example for returned listing
+----
+{ Name: 'vschool',
+  Prefix: 'manuscripts/195',
+  Marker: {},
+  MaxKeys: '1000',
+  IsTruncated: 'false',
+  Contents: 
+   [ { Key: 'manuscripts/195.ad',
+       LastModified: '2015-03-31T00:55:37.000Z',
+       ETag: '"87a4be2ab84a292793931ca8f8f190df"',
+       Size: '119064',
+       Owner: [Object],
+       StorageClass: 'STANDARD' },
+     { Key: 'manuscripts/195.html',
+       LastModified: '2015-03-31T00:55:37.000Z',
+       ETag: '"177629a0169bd87ad75d2f5a5c845ee5"',
+       Size: '203010',
+       Owner: [Object],
+       StorageClass: 'STANDARD' }],
+  '@': { xmlns: { xmlns: 'http://s3.amazonaws.com/doc/2006-03-01/' } } }
+----
