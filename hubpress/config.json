@@ -1,10 +1,1 @@
-{
-  "meta": {
-    "username": "ConcentricEngineering",
-    "repositoryName": "blog",
-    "branch": "gh-pages"
-  },
-  "theme": {
-    "name": "Casper"
-  }
-}
+{"meta":{"username":"ConcentricEngineering","repositoryName":"blog","branch":"gh-pages"},"site":{"title":"Concentric Engineering Blog","postsPerPage":"6","url":"https://ConcentricEngineering.github.io/blog"},"socialnetwork":{},"theme":{"name":"Roon","url":"//ConcentricEngineering.github.io/blog/themes/Roon"}}
