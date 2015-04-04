@@ -96,9 +96,6 @@ function listArchive(ms_number) {
   var folder = encodeURI('manuscripts/'+ms_number);
   var url = '?prefix=' + folder;
 
-  var process_files = function(list) {
-    console.log("FILE LIST: " + list.length);
-  }
 
   s3.get(url, 'xml', function (error, data) {
     n = parseInt((data['Contents']).length)
