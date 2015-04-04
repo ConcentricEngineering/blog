@@ -1,5 +1,7 @@
 = Node.js Communication with Amazon S3
 
+:numbered:
+
 I'm thinking of simplifying the archive process for notebooks
 on Notehsare along the following lines:
 
@@ -37,7 +39,7 @@ is a listing of the files in object `manuscript/199` of
 bucket `vschool`.
 
 
-== Servercode
+== Server code
 
 .Server code
 [source, javascript]
