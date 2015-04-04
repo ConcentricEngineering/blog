@@ -55,8 +55,8 @@ bucket `vschool`.
     res.end("You asked for the file " + req.params.file_name + "\n");
   });
 
-  app.get("/list", function(req, res) {
-    listBucket();
+ app.get("/list-manuscript/:ms_number", function(req, res) {
+    listArchive(req.params.ms_number);
     res.end("See console.log for the file list\n");
   });
 
@@ -64,31 +64,56 @@ app.listen(8081);
 --
 
 
-.Code for listBucket()
+.Code for listArchive()
 [source, javascript]
 --
-function listBucket() {
-  var s3 = require('aws2js').load('s3', "HAHA876", "HOHO1234");
+function listArchive(ms_number) {
+
+  var S3_KEY = 'HOHO1234';
+  var S3_SECRET = 'HAHA456';
+  var S3_BUCKET = 'vschool';
+
+  var s3 = require('aws2js').load('s3', S3_KEY, S3_SECRET);
   s3.setBucket("vschool");
 
-  var folder = encodeURI('manuscripts/195');
+  var folder = encodeURI('manuscripts/'+ms_number);
   var url = '?prefix=' + folder;
+
+  var process_files = function(list) {
+    console.log("FILE LIST: " + list.length);
+  }
 
   s3.get(url, 'xml', function (error, data) {
     n = parseInt((data['Contents']).length)
 
     console.log(error);
 
+    var file_list = [ ];
+
     for (i = 0; i < n; i++) {
       file_name = data['Contents'][i]['Key'];
-      console.log((i+1) + ": " + file_name);
+      file_list.push(file_name);
+    }
+
+    for (i in file_list) {
+      console.log((parseInt(i)+1) + ': '+ file_list[i]);
     }
     console.log("----------------------");
-    console.log(n + " items listed");
+    console.log(file_list.length + " items listed");
+
+    async = require('async')
+    async.map(file_list, identity, function(err, results){
+        // results is now an array of stats for each file
+        console.log(results);
+    });
+
 
   });
-}
 
+  console.log("foo: " + foo);
+
+
+}
 --
 
 .Example for returned listing
