@@ -51,8 +51,22 @@ bucket `vschool`.
     res.end('I am alive. Thank you for your concern.\n')
   });
 
-  app.get("/file/:file_name", function(req, res) {
-    res.end("You asked for the file " + req.params.file_name + "\n");
+    app.get("/file/:a", function(req, res) {
+    file_path = req.params.a
+    res.end("You asked for the file " + file_path + "\n");
+    get_file(file_path)
+  });
+
+  app.get("/file/:a/:b", function(req, res) {
+    file_path = req.params.a + "/" + req.params.b
+    res.end("You asked for the file " + file_path + "\n");
+    get_file(file_path)
+  });
+
+  app.get("/file/:a/:b/:c", function(req, res)  {
+    file_path = req.params.a + "/" + req.params.b + "/" + req.params.c
+    res.end("You asked for the file " + file_path + "\n");
+    get_file(file_path)
   });
 
  app.get("/list-manuscript/:ms_number", function(req, res) {
