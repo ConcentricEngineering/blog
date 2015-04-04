@@ -46,7 +46,7 @@ bucket `vschool`.
 --
   // File: server.js
   
- var express = require('express');
+  var express = require('express');
   var app = express();
 
   var S3_KEY = 'HOHOH123';
