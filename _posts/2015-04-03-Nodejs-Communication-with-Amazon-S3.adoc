@@ -46,8 +46,12 @@ bucket `vschool`.
 --
   // File: server.js
   
-  var express = require('express');
+ var express = require('express');
   var app = express();
+
+  var S3_KEY = 'HOHOH123';
+  var S3_SECRET = 'HAHA456';
+  var S3_BUCKET = 'vschool';
 
   app.get ('/hello', function(req, res) {
     res.end('I am alive. Thank you for your concern.\n')
@@ -86,10 +90,6 @@ app.listen(8081);
 --
 function listArchive(ms_number) {
 
-  var S3_KEY = 'HOHO1234';
-  var S3_SECRET = 'HAHA456';
-  var S3_BUCKET = 'vschool';
-
   var s3 = require('aws2js').load('s3', S3_KEY, S3_SECRET);
   s3.setBucket("vschool");
 
@@ -127,8 +127,6 @@ function listArchive(ms_number) {
 
   });
 
-  console.log("foo: " + foo);
-
 
 }
 --
@@ -144,10 +142,6 @@ var get_file = function(path) {
     // var dest_path = 'ladidah.txt'
     var dest_path =  'manuscript/' + dest_name(path)
     console.log("downloaded: " + source_path + ' as ' + dest_path);
-
-    var S3_KEY = 'HOHO1234';
-    var S3_SECRET = 'HAHA456';
-    var S3_BUCKET = 'vschool';
 
     var knox = require('knox').createClient({
       key: S3_KEY,
