@@ -23,7 +23,7 @@
     <meta property="og:description" content="I&amp;#8217;m thinking of simplifying the archive process for notebooks on Notehsare along the following lines: Noteshare prepares the archive on S3, but in a non-public location. Noteshare sends a message to a Node.js server in EC2 asking..." />
     <meta property="og:url" content="https://ConcentricEngineering.github.io/blog/2015/04/03/Nodejs-Communication-with-Amazon-S3.html" />
     <meta property="article:published_time" content="2015-04-03T04:00:00.000Z" />
-    <meta property="article:modified_time" content="2015-04-04T13:01:42.615Z" />
+    <meta property="article:modified_time" content="2015-04-04T13:08:32.025Z" />
     
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Node.js Communication with Amazon S3" />
@@ -45,7 +45,7 @@
     "headline": "Node.js Communication with Amazon S3",
     "url": "https://ConcentricEngineering.github.io/blog/2015/04/03/Nodejs-Communication-with-Amazon-S3.html",
     "datePublished": "2015-04-03T04:00:00.000Z",
-    "dateModified": "2015-04-04T13:01:42.615Z",
+    "dateModified": "2015-04-04T13:08:32.025Z",
     "description": "I&amp;#8217;m thinking of simplifying the archive process for notebooks on Notehsare along the following lines: Noteshare prepares the archive on S3, but in a non-public location. Noteshare sends a message to a Node.js server in EC2 asking..."
 }
     </script>
@@ -139,8 +139,12 @@ bucket <code>vschool</code>.</p>
 <div class="content">
 <pre class="highlight"><code class="language-javascript" data-lang="javascript">  // File: server.js
 
-  var express = require('express');
+ var express = require('express');
   var app = express();
+
+  var S3_KEY = 'HOHOH123';
+  var S3_SECRET = 'HAHA456';
+  var S3_BUCKET = 'vschool';
 
   app.get ('/hello', function(req, res) {
     res.end('I am alive. Thank you for your concern.\n')
@@ -179,10 +183,6 @@ app.listen(8081);</code></pre>
 <div class="content">
 <pre class="highlight"><code class="language-javascript" data-lang="javascript">function listArchive(ms_number) {
 
-  var S3_KEY = 'HOHO1234';
-  var S3_SECRET = 'HAHA456';
-  var S3_BUCKET = 'vschool';
-
   var s3 = require('aws2js').load('s3', S3_KEY, S3_SECRET);
   s3.setBucket("vschool");
 
@@ -220,8 +220,6 @@ app.listen(8081);</code></pre>
 
   });
 
-  console.log("foo: " + foo);
-
 
 }</code></pre>
 </div>
@@ -238,10 +236,6 @@ app.listen(8081);</code></pre>
     // var dest_path = 'ladidah.txt'
     var dest_path =  'manuscript/' + dest_name(path)
     console.log("downloaded: " + source_path + ' as ' + dest_path);
-
-    var S3_KEY = 'HOHO1234';
-    var S3_SECRET = 'HAHA456';
-    var S3_BUCKET = 'vschool';
 
     var knox = require('knox').createClient({
       key: S3_KEY,
