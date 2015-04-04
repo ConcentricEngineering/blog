@@ -16,7 +16,7 @@ along with a message to wait a short time (??).
 http://www.hacksparrow.com/node-js-amazon-s3-how-to-get-started.html[Getting
 started: node & s3] +
 https://github.com/Automattic/knox[Knox] + 
-http://s3tools.org/usage[S2 Tools - commands] +
+http://s3tools.org/usage[S3 Tools - commands] +
 http://justinklemm.com/node-js-async-tutorial/[Async tutorial] +
 
 
